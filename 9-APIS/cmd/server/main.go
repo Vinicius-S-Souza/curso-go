@@ -57,10 +57,10 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-	//r.Use(LogRequest)
-	r.Use(middleware.Recoverer)
-	r.Use(middleware.WithValue("jwt", configs.TokenAuth))
-	r.Use(middleware.WithValue("JwtExpiresIn", configs.JWTExpiresIn))
+	
+	r.Use(middleware.Recoverer)                                       // Determina o Reinício do Sistema em caso de Encerramento por Falha
+	r.Use(middleware.WithValue("jwt", configs.TokenAuth))             // Captura Dados para Validação do Token
+	r.Use(middleware.WithValue("JwtExpiresIn", configs.JWTExpiresIn)) // Captura Dados para Validação da Expiração do Token
 
 	r.Route("/products", func(r chi.Router) {
 		r.Use(jwtauth.Verifier(configs.TokenAuth))
