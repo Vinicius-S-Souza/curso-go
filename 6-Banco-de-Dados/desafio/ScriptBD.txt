@@ -1,0 +1,8 @@
+CREATE TABLE cotacoes(  
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+    code VARCHAR(10) COMMENT 'Código da Moeda Cotacao',
+    codein VARCHAR(10) COMMENT 'Código da Moeda Origem',
+    name VARCHAR(255) COMMENT 'Descrição da Cotação',
+    valor FLOAT COMMENT 'Valor da Cotação',
+    create_time DATETIME COMMENT 'Create Time'
+) COMMENT '';
