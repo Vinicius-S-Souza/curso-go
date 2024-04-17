@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/devfullcycle/fcutils/pkg/rabbitmq"
 )
 
@@ -12,6 +14,14 @@ func main() {
 	}
 	defer ch.Close()
 
-	rabbitmq.Publish(ch, "Hello World!", "amq.direct")
+	var msg string
+
+	for i := 0; i < 100000; i++ {
+
+		msg = fmt.Sprintf("Mensagem %d", i)
+
+		rabbitmq.Publish(ch, msg, "amq.direct")
+	}
+	
 
 }
